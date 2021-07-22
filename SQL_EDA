@@ -1,0 +1,39 @@
+
+--- Missing Values Check¶
+
+SELECT * FROM store_values
+WHERE units_sold IS NULL
+
+--- Out of Range Values¶
+
+SELECT * FROM employees
+WHERE (age < 0) AND (age > 40)
+SELECT * FROM store_sales
+WHERE employee_shift > 10 OR
+employee_shift < 0
+
+--- Ordering and Counting
+
+SELECT age FROM employees
+ORDER BY age
+SELECT age FROM employees
+ORDER BY age DESC
+SELECT age, start_date FROM employees
+ORDER BY age, start_date
+SELECT COUNT(age) FROM employees # return non null values
+
+--- Calculating correlation with SQL
+
+-1: negatively correlated
++1: positively correlated
+0: not correlated
+
+-- positively correlated
+SELECT CORR(units_sold, total_revenue)
+FROM product_sales
+-- negatively correlated
+SELECT CORR(rooms_booked, rooms_avaliable)
+FROM hotel_rooms
+--not correlated
+SELECT CORR(distance_to_store, amount_spend)
+FROM hotel_rooms
